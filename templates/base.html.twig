@@ -10,15 +10,31 @@
         {% block javascripts %}
             {% block importmap %}{{ importmap('app') }}{% endblock %}
         {% endblock %}
-
-        {% set frankenphpHotReload = app.request.server.get('FRANKENPHP_HOT_RELOAD') %}
-        {% if frankenphpHotReload %}
-        <meta name="frankenphp-hot-reload:url" content="{{ frankenphpHotReload }}">
-        <script src="https://cdn.jsdelivr.net/npm/idiomorph"></script>
-        <script src="https://cdn.jsdelivr.net/npm/frankenphp-hot-reload/+esm" type="module"></script>
-        {% endif %}
     </head>
     <body>
+        <header>
+            <nav>
+                <a href="{{ path('app_home') }}"><img src="{{ asset('img/logo.png') }}" alt="Vehicloc" /></a>
+                <a href="add.html" class="btn-nav">Ajouter une voiture</a>
+            </nav>
         {% block body %}{% endblock %}
+        <footer>
+            <h2>Conduire avec nous</h2>
+            <nav>
+                <ul>
+                    <li><a href="#">Mentions légales</a></li>
+                    <li><a href="#">Nous contacter</a></li>
+                    <li>
+                        <a href="#"><img src="{{ asset('icons/instagram.png') }}" alt="Instagram" /></a>
+                        <a href="#"><img src="{{ asset('icons/facebook.png') }}" alt="Facebook" /></a>
+                    </li>
+                </ul>
+                <ul>
+                    <li><a href="#">Données personnelles</a></li>
+                    <li><a href="#">Questions fréquentes</a></li>
+                    <li class="copyright">© Véhicloc 2023</li>
+                </ul>
+            </nav>
+        </footer>
     </body>
 </html>
