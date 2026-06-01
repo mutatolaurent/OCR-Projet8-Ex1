@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% form_theme form _self %}
+
+{# On redéfinit le bloc qui gère l'affichage des erreurs d'un champ #}
+{% block form_errors %}
+    {% if errors|length > 0 %}
+        <div class="mes-erreurs-personnalisees">
+            {% for error in errors %}
+                {# Ici, tu mets la structure HTML que tu veux à la place du UL/LI #}
+                <div class="alert-texte">
+                    {{ error.message }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+{% endblock %}
+
+{% block title %}Nouvelle voiture  Vehicloc{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+{% block body %}
+<section id="add">
+    <a href="{{ path('app_home') }}">← Retour</a>
+    <h1>Ajouter une voiture</h1>
+    {{ form_start(form) }}
+        <div class="input">
+            {{ form_row(form.nom, {label: 'Nom de la voiture'}) }}
+        </div>
+        <div class="input">
+            {{ form_row(form.description, {label: 'Description'}) }}
+        </div>
+        <div class="flex-input">
+            <div class="input">
+                {{ form_row(form.tarifMois, {label: 'Prix mensuel'}) }}
+            </div>
+            <div class="input">
+                {{ form_row(form.tarifJour, {label: 'Prix journalier'}) }}
+            </div>
+        </div>
+        <div class="flex-input">
+            <div class="input">
+                {{ form_row(form.places, {label: 'Nombre de places'}) }}
+            </div>
+            <div class="input">
+                {{ form_row(form.boite, {label: 'Boîte de vitesse'}) }}
+            </div>
+        </div>
+        {{ form_rest(form) }}
+        
+        <button class="btn-add">Ajouter</button>
+    {{ form_end(form) }}
+</section>
+
+
+
+{% endblock %}
